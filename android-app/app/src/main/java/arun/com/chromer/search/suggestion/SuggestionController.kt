@@ -19,6 +19,7 @@ import com.airbnb.epoxy.AsyncEpoxyController
 import com.jakewharton.rxrelay2.PublishRelay
 import com.mikepenz.community_material_typeface_library.CommunityMaterial
 import com.mikepenz.iconics.IconicsDrawable
+import dev.arunkumar.android.epoxy.controller.model
 import dev.arunkumar.android.epoxy.span.TotalSpanOverride
 import dev.arunkumar.common.context.dpToPx
 import io.reactivex.Observable
@@ -63,35 +64,11 @@ constructor(
 
     var query: String = ""
 
-    var copySuggestions: List<SuggestionItem> = emptyList()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var googleSuggestions: List<SuggestionItem> = emptyList()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var historySuggestions: List<SuggestionItem> = emptyList()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var searchProviders: List<SearchProvider> = emptyList()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var showSearchProviders = false
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
+    var copySuggestions: List<SuggestionItem> by model(emptyList())
+    var googleSuggestions: List<SuggestionItem> by model(emptyList())
+    var historySuggestions: List<SuggestionItem> by model(emptyList())
+    var searchProviders: List<SearchProvider> by model(emptyList())
+    var showSearchProviders by model(false)
 
     fun clear() {
         showSearchProviders = false

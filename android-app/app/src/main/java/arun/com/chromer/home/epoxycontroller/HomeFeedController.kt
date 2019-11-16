@@ -11,6 +11,7 @@ import arun.com.chromer.shared.epxoy.model.headerLayout
 import arun.com.chromer.tabs.TabsManager
 import arun.com.chromer.util.epoxy.indeterminateProgress
 import com.airbnb.epoxy.AsyncEpoxyController
+import dev.arunkumar.android.epoxy.controller.model
 import dev.arunkumar.common.result.Result
 import dev.arunkumar.common.result.idle
 import javax.inject.Inject
@@ -22,23 +23,9 @@ constructor(
         private val tabsManager: TabsManager
 ) : AsyncEpoxyController() {
 
-    var customTabProviderInfo: CustomTabProviderInfo? = null
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var recentWebSites: Result<List<Website>> = idle()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
-
-    var tabs: List<TabsManager.Tab> = emptyList()
-        set(value) {
-            field = value
-            requestDelayedModelBuild(0)
-        }
+    var customTabProviderInfo: CustomTabProviderInfo? by model(null)
+    var recentWebSites: Result<List<Website>> by model(idle())
+    var tabs: List<TabsManager.Tab> by model(emptyList())
 
     override fun buildModels() {
         if (tabs.isNotEmpty() || customTabProviderInfo != null) {
