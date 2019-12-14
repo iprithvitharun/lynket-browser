@@ -235,4 +235,6 @@ dependencies {
 
     // Disk LRU cache
     implementation project(':disk-cache')
+
+    kapt "dev.arunkumar.scabbard:scabbard-processor:0.1.0"
 }

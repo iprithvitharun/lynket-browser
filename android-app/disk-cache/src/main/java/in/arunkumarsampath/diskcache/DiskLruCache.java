@@ -19,8 +19,6 @@
 
 package in.arunkumarsampath.diskcache;
 
-import androidx.annotation.NonNull;
-
 import java.io.BufferedWriter;
 import java.io.Closeable;
 import java.io.EOFException;
@@ -893,7 +891,7 @@ public final class DiskLruCache implements Closeable {
             }
 
             @Override
-            public void write(@NonNull byte[] buffer, int offset, int length) {
+            public void write(byte[] buffer, int offset, int length) {
                 try {
                     out.write(buffer, offset, length);
                 } catch (IOException e) {

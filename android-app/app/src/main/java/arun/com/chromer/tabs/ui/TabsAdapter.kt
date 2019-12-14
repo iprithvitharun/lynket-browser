@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView
 import arun.com.chromer.R
 import arun.com.chromer.data.website.model.Website
 import arun.com.chromer.tabs.*
-import arun.com.chromer.util.glide.GlideRequests
 import butterknife.ButterKnife
 import com.mikepenz.community_material_typeface_library.CommunityMaterial
 import com.mikepenz.iconics.IconicsDrawable
@@ -41,7 +40,6 @@ import kotlinx.android.synthetic.main.fragment_tabs_item_template.*
  */
 class TabsAdapter
 constructor(
-        val glideRequests: GlideRequests,
         val tabsManager: TabsManager
 ) : ListAdapter<TabsManager.Tab, TabsAdapter.TabsViewHolder>(TabDiff) {
 
@@ -64,7 +62,6 @@ constructor(
 
     override fun onViewRecycled(holder: TabsViewHolder) {
         super.onViewRecycled(holder)
-        glideRequests.clear(holder.icon)
     }
 
     fun getTabAt(adapterPosition: Int): TabsManager.Tab = getItem(adapterPosition)
@@ -92,7 +89,6 @@ constructor(
         fun bind(tab: TabsManager.Tab) {
             if (tab.website != null) {
                 websiteTitle.text = tab.website?.safeLabel()
-                glideRequests.load(tab.website).into(icon!!)
                 websiteUrl.text = tab.website?.url
                 when (tab.type) {
                     WEB_VIEW, WEB_VIEW_EMBEDDED -> {

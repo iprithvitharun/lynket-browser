@@ -17,3 +17,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 include ':app', ':disk-cache'
+
+includeBuild('../../scabbard') {
+    dependencySubstitution {
+        substitute module('dev.arunkumar.scabbard:scabbard-processor') with module('dev.arunkumar.scabbard:scabbard-processor:0.1.0')
+    }
+}
